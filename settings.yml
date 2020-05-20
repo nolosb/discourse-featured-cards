@@ -2,6 +2,8 @@ featured_tags:
   type: list
   list_type: tag
   default: "featured"
+display_when_unfiltered: true
+display_on_categories: true
 display_categories: 
   type: list
   list_type: category

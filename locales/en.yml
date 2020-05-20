@@ -3,7 +3,9 @@ en:
     description: Display a horizontal strip of featured topics above a category
     settings:
       featured_tags: The tag which contains the featured topics. This must be publically visible.
+      maximum_topic_count: The maximum number of topics to display
+      display_when_unfiltered: Display on the unfiltered latest page?
+      display_on_categories: Display on category pages?
       display_categories: Display the tiles when viewing these categories. Blank for all categories
-      maximum_topic_count: The maximum number of categories to display
       scope_to_category: Filter topics to the current category?
       display_mobile: Display on mobile devices?
