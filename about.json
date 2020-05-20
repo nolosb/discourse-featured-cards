@@ -1,0 +1,15 @@
+{
+  "name": "Featured Tiles",
+  "about_url": null,
+  "license_url": null,
+  "component": true,
+  "authors": "David Taylor",
+  "modifiers": {
+    "topic_thumbnail_sizes": [
+      [200,200],
+      [300,300],
+      [400,400]
+    ]
+  },
+  "minimum_discourse_version": "2.5.0.beta2"
+}

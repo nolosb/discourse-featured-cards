@@ -1,0 +1,11 @@
+featured_tags:
+  type: list
+  list_type: tag
+  default: "featured"
+display_categories: 
+  type: list
+  list_type: category
+  default: ""
+maximum_topic_count: 5
+scope_to_category: false
+display_mobile: false

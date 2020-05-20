@@ -1,0 +1,7 @@
+{{#if shouldDisplay}}
+  <div class="featured-tiles-container">
+    {{#each filteredTopics as |topic|}}
+      {{featured-tile topic=topic}}
+    {{/each}}
+  </div>
+{{/if}}
