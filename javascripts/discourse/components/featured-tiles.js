@@ -53,7 +53,7 @@ export default Component.extend({
   @discourseComputed("site.mobileView", "category.id")
   shouldDisplay(isMobile, viewingCategoryId) {
     if (isMobile && !settings.display_mobile) return false;
-    if (settings.display_on_unfiltered && !viewingCategoryId) return true;
+    if (settings.display_when_unfiltered && !viewingCategoryId) return true;
 
     if (settings.display_on_categories && viewingCategoryId) {
       if (displayCategories.length === 0) return true;
