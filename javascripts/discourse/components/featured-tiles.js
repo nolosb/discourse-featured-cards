@@ -44,6 +44,10 @@ export default Component.extend({
 
   loadTopics() {
     const loadParams = { tags: featuredTags };
+    if (settings.featured_category > 0) {
+      loadParams.category = settings.featured_category;
+    }
+
     if (settings.scope_to_category && this.category) {
       loadParams.category = this.category.id;
     }

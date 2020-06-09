@@ -1,3 +1,6 @@
+featured_category:
+  type: integer
+  default: 0
 featured_tags:
   type: list
   list_type: tag
