@@ -10,6 +10,17 @@ const displayCategories = settings.display_categories
 
 const featuredTags = settings.featured_tags.split("|");
 
+function shuffle(array) {
+  array = [...array];
+
+  // https://stackoverflow.com/a/12646864
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}
 export default Component.extend({
   isLoading: true,
   classNameBindings: "isLoading",
@@ -35,10 +46,10 @@ export default Component.extend({
 
     this.store
       .findFiltered("topicList", {
-        filter: "latest",
-        params: loadParams,
+        filter: settings.topic_source,
+        params: loadParams
       })
-      .then((list) => {
+      .then(list => {
         this.set("list", list);
         next(this, () => this.set("isLoading", false)); // Use `next` for CSS animation
       });
@@ -47,6 +58,9 @@ export default Component.extend({
   @discourseComputed("list.topics")
   filteredTopics(topics) {
     if (!topics) return;
+    if (settings.randomize_topics) {
+      topics = shuffle(topics);
+    }
     return topics.slice(0, settings.maximum_topic_count);
   },
 

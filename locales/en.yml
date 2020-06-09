@@ -3,6 +3,8 @@ en:
     description: Display a horizontal strip of featured topics above a category
     settings:
       featured_tags: The tag which contains the featured topics. This must be publically visible.
+      topic_source: Which algorithm should be used to pick topics?
+      randomize_topics: Randomize the selection and ordering of topics?
       maximum_topic_count: The maximum number of topics to display
       display_when_unfiltered: Display on the unfiltered latest page?
       display_on_categories: Display on category pages?

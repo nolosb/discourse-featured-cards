@@ -2,6 +2,18 @@ featured_tags:
   type: list
   list_type: tag
   default: "featured"
+topic_source:
+  type: enum
+  default: "top/yearly"
+  choices:
+    - latest
+    - top/all
+    - top/yearly
+    - top/quarterly
+    - top/monthly
+    - top/weekly
+    - top/daily
+randomize_topics: true
 display_when_unfiltered: true
 display_on_categories: true
 display_categories: 
