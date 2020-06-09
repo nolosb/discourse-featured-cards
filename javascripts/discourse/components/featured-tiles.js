@@ -2,11 +2,12 @@ import discourseComputed from "discourse-common/utils/decorators";
 import { observes } from "discourse-common/utils/decorators";
 import Component from "@ember/component";
 import { next } from "@ember/runloop";
+import { inject as service } from "@ember/service";
 
 const displayCategories = settings.display_categories
   .split("|")
-  .map((id) => parseInt(id, 10))
-  .filter((id) => id);
+  .map(id => parseInt(id, 10))
+  .filter(id => id);
 
 const featuredTags = settings.featured_tags.split("|");
 
@@ -21,7 +22,10 @@ function shuffle(array) {
 
   return array;
 }
+
 export default Component.extend({
+  router: service("router"),
+
   isLoading: true,
   classNameBindings: "isLoading",
 
@@ -64,8 +68,22 @@ export default Component.extend({
     return topics.slice(0, settings.maximum_topic_count);
   },
 
-  @discourseComputed("site.mobileView", "category.id")
-  shouldDisplay(isMobile, viewingCategoryId) {
+  @discourseComputed(
+    "site.mobileView",
+    "category.id",
+    "router.currentRouteName"
+  )
+  shouldDisplay(isMobile, viewingCategoryId, currentRouteName) {
+    if (
+      ![
+        "discovery.latest",
+        "discovery.categories",
+        "discovery.latestCategory"
+      ].includes(currentRouteName)
+    ) {
+      return false;
+    }
+
     if (isMobile && !settings.display_mobile) return false;
     if (settings.display_when_unfiltered && !viewingCategoryId) return true;
 
@@ -74,5 +92,5 @@ export default Component.extend({
       return displayCategories.includes(viewingCategoryId);
     }
     return false;
-  },
+  }
 });
