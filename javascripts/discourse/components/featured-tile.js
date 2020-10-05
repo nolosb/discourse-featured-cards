@@ -46,7 +46,7 @@ export default Component.extend({
 
     const largeEnough = this.topic.thumbnails.filter((t) => {
       if (!t.url) return false;
-      return t.max_width >= maxHeight && t.max_width >= maxHeight;
+      return t.max_width >= maxHeight;
     });
 
     if (largeEnough.lastObject) {
