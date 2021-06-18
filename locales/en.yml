@@ -1,6 +1,6 @@
 en: 
   theme_metadata: 
-    description: Display a horizontal strip of featured topics above a category
+    description: Display featured topics in a row of flip cards
     settings:
       featured_category: The category containing featured topics. Set to 0 for all categories. 'Scope to category' will override this setting.
       featured_tags: The tag which contains the featured topics. This must be publically visible.

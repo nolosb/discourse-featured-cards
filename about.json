@@ -1,9 +1,9 @@
 {
-  "name": "Featured Tiles",
+  "name": "Featured Flip Cards",
   "about_url": null,
   "license_url": null,
   "component": true,
-  "authors": "David Taylor",
+  "authors": "",
   "modifiers": {
     "topic_thumbnail_sizes": [
       [200,200],

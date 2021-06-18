@@ -7,7 +7,7 @@ featured_tags:
   default: "featured"
 topic_source:
   type: enum
-  default: "top/yearly"
+  default: "latest"
   choices:
     - latest
     - top/all
@@ -23,6 +23,6 @@ display_categories:
   type: list
   list_type: category
   default: ""
-maximum_topic_count: 5
+maximum_topic_count: 6
 scope_to_category: false
-display_mobile: false
+display_mobile: true
