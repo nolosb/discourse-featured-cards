@@ -1,3 +1,10 @@
+aspect_ratio:
+  type: string
+  default: "3/4.5"
+image_resize:
+  type: string
+  default: "contain"
+  description: "How topic thumbnails should be resized to fit the cards. Can be one of the following: contain, cover, fill, none, scale-down"
 featured_category:
   type: integer
   default: 0
