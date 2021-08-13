@@ -1,6 +1,10 @@
 aspect_ratio:
   type: string
   default: "3/4.5"
+safari_fix:
+  type: string
+  default: "150%"
+  description: "Divide height/width of the aspect ratio and give the value in percentage. E.g.: 4.5/3 = 150%"
 image_resize:
   type: string
   default: "contain"
