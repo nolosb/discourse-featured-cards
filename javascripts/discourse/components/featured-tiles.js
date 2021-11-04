@@ -6,8 +6,8 @@ import { inject as service } from "@ember/service";
 
 const displayCategories = settings.display_categories
   .split("|")
-  .map(id => parseInt(id, 10))
-  .filter(id => id);
+  .map((id) => parseInt(id, 10))
+  .filter((id) => id);
 
 const featuredTags = settings.featured_tags.split("|");
 
@@ -43,7 +43,7 @@ export default Component.extend({
   },
 
   loadTopics() {
-    const loadParams = { tags: featuredTags };
+    const loadParams = { tags: featuredTags, period: settings.top_period };
     if (settings.featured_category > 0) {
       loadParams.category = settings.featured_category;
     }
@@ -55,9 +55,9 @@ export default Component.extend({
     this.store
       .findFiltered("topicList", {
         filter: settings.topic_source,
-        params: loadParams
+        params: loadParams,
       })
-      .then(list => {
+      .then((list) => {
         this.set("list", list);
         next(this, () => this.set("isLoading", false)); // Use `next` for CSS animation
       });
@@ -82,7 +82,7 @@ export default Component.extend({
       ![
         "discovery.latest",
         "discovery.categories",
-        "discovery.latestCategory"
+        "discovery.latestCategory",
       ].includes(currentRouteName)
     ) {
       return false;
@@ -96,5 +96,5 @@ export default Component.extend({
       return displayCategories.includes(viewingCategoryId);
     }
     return false;
-  }
+  },
 });

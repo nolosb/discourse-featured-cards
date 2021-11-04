@@ -34,6 +34,6 @@ display_categories:
   type: list
   list_type: category
   default: ""
-maximum_topic_count: 6
+maximum_topic_count: 4
 scope_to_category: false
 display_mobile: true
