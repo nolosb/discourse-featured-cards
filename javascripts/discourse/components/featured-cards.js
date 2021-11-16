@@ -81,6 +81,7 @@ export default Component.extend({
     if (
       ![
         "discovery.latest",
+        "discovery.top",
         "discovery.categories",
         "discovery.latestCategory",
       ].includes(currentRouteName)

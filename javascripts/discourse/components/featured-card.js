@@ -2,7 +2,7 @@ import Component from "@ember/component";
 import discourseComputed from "discourse-common/utils/decorators";
 
 export default Component.extend({
-  classNames: "featured-tile",
+  classNames: "featured-card",
   responsiveRatios: [1, 1.5, 2],
   displayHeight: 200,
   displayWidth: 200,

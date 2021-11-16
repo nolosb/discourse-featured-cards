@@ -12,5 +12,3 @@ en:
       display_categories: Display the tiles when viewing these categories. Blank for all categories
       scope_to_category: Filter topics to the current category?
       display_mobile: Display on mobile devices?
-  preference_header: Featured Topics Banner
-  preference_description: Show featured topics banner on this device
