@@ -9,7 +9,7 @@ const displayCategories = settings.display_categories
   .map((id) => parseInt(id, 10))
   .filter((id) => id);
 
-const featuredTags = settings.featured_tags.split("|");
+const featuredTags = settings.featured_tags.replaceAll("|", " ");
 
 function shuffle(array) {
   array = [...array];
