@@ -1,5 +1,8 @@
 <a class="card-content" href={{url}}>
-{{discourse-tags topic mode="list" tagsForUser=tagsForUser}}
+  <div class="discourse-tags">
+    <a href={{tagUrl}} data-tag-name={{tag}} class="discourse-tag simple">{{tag}}</a>
+  </div>
+
   {{#if topic.thumbnails}}
     <img
       src={{fallbackSrc}}

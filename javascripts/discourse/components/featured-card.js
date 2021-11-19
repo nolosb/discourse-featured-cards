@@ -7,6 +7,16 @@ export default Component.extend({
   displayHeight: 200,
   displayWidth: 200,
 
+  @discourseComputed("topic.tags")
+  tagUrl(tags) {
+    return `/tags/${this.tag}`;
+  },
+
+  @discourseComputed("topic.tags")
+  tag(tags) {
+    return tags.find(element => settings.featured_tags.split("|").includes(element));
+  },
+
   @discourseComputed("topic.thumbnails")
   srcset(thumbnails) {
     return this.responsiveRatios
