@@ -6,9 +6,9 @@
   "authors": "Nolo Sabes",
   "modifiers": {
     "topic_thumbnail_sizes": [
-      [200,200],
-      [300,300],
-      [400,400]
+      [200, 200],
+      [300, 300],
+      [400, 400]
     ]
   },
   "minimum_discourse_version": "2.5.0.beta2"

@@ -14,7 +14,9 @@ export default Component.extend({
 
   @discourseComputed("topic.tags")
   tag(tags) {
-    return tags.find(element => settings.featured_tags.split("|").includes(element));
+    return tags.find((element) =>
+      settings.featured_tags.split("|").includes(element)
+    );
   },
 
   @discourseComputed("topic.thumbnails")

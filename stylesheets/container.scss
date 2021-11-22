@@ -4,8 +4,12 @@
   grid-template-rows: auto;
   gap: 30px;
   padding: 0 0 2rem 0;
-  overflow: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
 }
 
 .featured-cards-container::-webkit-scrollbar {

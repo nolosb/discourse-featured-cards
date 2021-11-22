@@ -26,7 +26,7 @@ topic_source:
 randomize_topics: true
 display_when_unfiltered: true
 display_on_categories: true
-display_categories: 
+display_categories:
   type: list
   list_type: category
   default: ""
