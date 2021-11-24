@@ -13,8 +13,8 @@
       background-color: var(--secondary);
       .discourse-tags {
         position: absolute;
-        top: 0px;
-        right: 0px;
+        top: -1px;
+        right: -1px;
       }
       .topic-thumbnail,
       .topic-thumbnail-placeholder {
