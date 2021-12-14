@@ -9,7 +9,7 @@ export default Component.extend({
 
   @discourseComputed("topic.tags")
   tagUrl(tags) {
-    return `/tags/${this.tag}`;
+    return `/tag/${this.tag}`;
   },
 
   @discourseComputed("topic.tags")
