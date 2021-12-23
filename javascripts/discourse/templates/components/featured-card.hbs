@@ -25,7 +25,10 @@
   <h2 class="topic-title">{{topic.title}}</h2>
   <span class="topic-author">
     {{#user-link user=topic.creator}}
-      {{avatar topic.creator imageSize="small"}}
+      {{avatar topic.creator imageSize="large"}}
+      <div class="topic-avatar">
+          {{user-avatar-flair user=topic.creator}}
+      </div>
       {{topic.creator.name}}
     {{/user-link}}
   </span>
