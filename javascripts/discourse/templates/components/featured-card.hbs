@@ -1,35 +1,55 @@
 <a class="card-content" href={{url}}>
   <div class="discourse-tags">
-    <a href={{tagUrl}} data-tag-name={{tag}} class="discourse-tag box">{{tag}}</a>
+    <a
+      href={{tagUrl}}
+      data-tag-name={{tag}}
+      class="discourse-tag box"
+    >{{tag}}</a>
   </div>
-
-  {{#if topic.thumbnails}}
-    <img
-      src={{fallbackSrc}}
-      srcset={{srcset}}
-      width={{width}}
-      height={{height}}
-      loading="lazy"
-      class="topic-thumbnail"
-    />
-  {{else}}
-    <div width="100%" height="100%" class="topic-thumbnail-placeholder"></div>
-  {{/if}}
-  <div class="topic-header">
-    <div class="category-link">{{category-link topic.category}}</div>
-    <span class="topic-date">{{~format-date
-        topic.createdAt
-        format="medium"
-      }}</span>
+  <div class="card-image">
+    {{#if topic.thumbnails}}
+      <img
+        src={{fallbackSrc}}
+        srcset={{srcset}}
+        width="100%"
+        height="100%"
+        loading="lazy"
+        class="topic-thumbnail"
+      />
+    {{else}}
+      <div width="100%" height="100%" class="topic-thumbnail-placeholder"></div>
+    {{/if}}
   </div>
-  <h2 class="topic-title">{{topic.title}}</h2>
-  <span class="topic-author">
-    {{#user-link user=topic.creator}}
-      {{avatar topic.creator imageSize="large"}}
-      <div class="topic-avatar">
-          {{user-avatar-flair user=topic.creator}}
+  <div class="card-details">
+    {{#if (theme-setting "show_category_link")}}
+      <div class="topic-header">
+        <div class="category-link">{{category-link topic.category}}</div>
+        <span class="topic-date">{{~format-date
+            topic.createdAt
+            format="medium"
+          }}</span>
       </div>
-      {{topic.creator.name}}
-    {{/user-link}}
-  </span>
+    {{/if}}
+    {{#if (theme-setting "show_title")}}
+      <h2 class="topic-title">{{topic.title}}</h2>
+    {{/if}}
+    {{#if (theme-setting "show_excerpt")}}
+      {{#if topic.hasExcerpt}}
+        <div class="topic-excerpt">
+          {{html-safe topic.excerpt}}
+        </div>
+      {{/if}}
+    {{/if}}
+    {{#if (theme-setting "show_author")}}
+      <div class="topic-author">
+        {{#user-link user=topic.creator}}
+          {{avatar topic.creator imageSize="medium"}}
+          <div class="topic-avatar">
+            {{user-avatar-flair user=topic.creator}}
+          </div>
+          {{topic.creator.name}}
+        {{/user-link}}
+      </div>
+    {{/if}}
+  </div>
 </a>

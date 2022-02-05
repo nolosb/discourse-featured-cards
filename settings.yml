@@ -1,10 +1,36 @@
 cards_height:
   type: integer
   default: 350
+  description: "Height in px for Desktop view. Mobile will wrap card content"
+cards_min_width:
+  type: float
+  default: 0.75
+  description: "Minimun height/width ratio for Desktop view. Mobile shows full width"
+cards_max_width:
+  type: float
+  default: 0.75
+  description: "Maximum height/width ratio for Desktop view. Mobile shows full width"
 image_resize:
   type: string
   default: "contain"
   description: "How topic thumbnails should be resized to fit the cards. Can be one of the following: contain, cover, fill, none, scale-down"
+corner_radius:
+  type: integer
+  default: 4
+show_category_link:
+  type: bool
+  default: true
+show_title:
+  type: bool
+  default: true
+show_excerpt:
+  type: bool
+  default: false
+show_author:
+  type: bool
+  default: true
+maximum_topic_count: 4
+randomize_topics: true
 featured_category:
   type: integer
   default: 0
@@ -23,13 +49,16 @@ topic_source:
     - top/monthly
     - top/weekly
     - top/daily
-randomize_topics: true
-display_when_unfiltered: true
-display_on_categories: true
-display_categories:
-  type: list
-  list_type: category
-  default: ""
-maximum_topic_count: 4
-scope_to_category: false
+show_on:
+  default: homepage
+  type: enum
+  choices:
+    - homepage
+    - top_menu
+    - all
+  description: top_menu refers to the <a href="/admin/site_settings/category/all_results?filter=top_menu">top menu site setting</a>
 display_mobile: true
+show_component_heading:
+  default: true
+heading_text:
+  default: "Featured Cards"

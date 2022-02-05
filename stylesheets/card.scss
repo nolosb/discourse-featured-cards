@@ -1,96 +1,97 @@
 .featured-cards-container {
   .featured-card {
-    border: 1px solid var(--primary-low);
-    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    height: $cards-height + unquote("px");
-    min-width: 250px;
+    border-radius: #{$corner-radius}px;
+    background-color: var(--secondary);
+    box-shadow: 0 5px 10px 0 var(--card-shadow);
+    position: relative;
+    &:hover {
+      box-shadow: 0 15px 30px 0 var(--card-shadow);
+    }
     a.card-content {
-      border-radius: 5px;
-      position: relative;
       display: flex;
       flex-direction: column;
       height: 100%;
-      background-color: var(--secondary);
       .discourse-tags {
         position: absolute;
-        top: -1px;
-        right: -1px;
+        top: 0.35rem;
+        right: 0.35rem;
         .discourse-tag {
-          margin-right: 0px;
-          &.box {
-            border-top-left-radius: 0;
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-          }
+          margin-right: 0;
         }
       }
-      .topic-thumbnail,
-      .topic-thumbnail-placeholder {
-        border-radius: 5px;
-        flex: 1;
-        max-height: 55%;
+      .card-image {
+        height: 45%;
+        min-height: 45%;
         width: 100%;
-        object-fit: $image_resize;
-        background-size: $image_resize;
-      }
-      .topic-thumbnail {
-        border-radius: 4px;
-      }
-
-      .topic-header {
-        padding: 1rem 1.2rem 0.5rem 1.2rem;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        color: var(--primary-high);
-        column-gap: 0.3em;
-        .category-link {
-          .badge-wrapper.bullet {
-            margin-right: 0;
-          }
-          .category-name {
-            max-width: 130px;
-            white-space: nowrap;
-          }
+        .topic-thumbnail,
+        .topic-thumbnail-placeholder {
+          flex: 1;
+          border-top-left-radius: #{$corner-radius}px;
+          border-top-right-radius: #{$corner-radius}px;
         }
-        .topic-date {
-          &::before {
-            content: "// ";
-          }
-          font-size: var(--font-down-1);
+        .topic-thumbnail {
+          object-fit: $image_resize;
         }
       }
-      .topic-title {
-        padding: 0 1.2rem;
-        color: var(--primary);
-        max-width: 100%;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-      }
-      .topic-author {
-        padding: 0 1.2rem 1rem 1.2rem;
-        margin-top: auto;
-
-        a {
+      .card-details {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        height: 100%;
+        .topic-header {
           display: flex;
-          align-items: center;
-          column-gap: 0.5em;
-          color: var(--primary-medium);
-          font-weight: 600;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: flex-end;
+          color: var(--primary-high);
+          gap: 0.3em;
+          .category-link {
+            max-width: 70%;
+            .badge-wrapper.bullet {
+              margin-right: 0;
+              width: 100%;
+            }
+            .category-name {
+              max-width: 100%;
+            }
+          }
+          .topic-date {
+            &::before {
+              content: "// ";
+            }
+            font-size: var(--font-down-1);
+          }
         }
+        .topic-title {
+          color: var(--primary);
+          @include line-clamp(3);
+        }
+        .topic-excerpt {
+          @include line-clamp(4);
+          color: var(--primary-high);
+        }
+        .topic-author {
+          margin-top: auto;
+          a {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            color: var(--primary-medium);
+            font-weight: 600;
 
-        .topic-avatar {
-          width: 0;
-          border: none;
-          .avatar-flair {
-            bottom: -15px;
-            right: 5px;
+            .topic-avatar {
+              width: 0;
+              border: none;
+              .avatar-flair {
+                bottom: -12px;
+                right: -3px;
+                .svg-icon {
+                  height: 0.85em;
+                  width: 0.85em;
+                }
+              }
+            }
           }
         }
       }
