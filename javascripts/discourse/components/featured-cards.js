@@ -95,6 +95,7 @@ export default Component.extend({
   showHeading() {
     if (settings.show_component_heading) {
       const titleElement = document.createElement("h3");
+      titleElement.classList.add("component-heading");
       titleElement.innerHTML = settings.heading_text;
       return titleElement;
     }

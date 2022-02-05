@@ -1,25 +1,33 @@
 <a class="card-content" href={{url}}>
-  <div class="discourse-tags">
-    <a
-      href={{tagUrl}}
-      data-tag-name={{tag}}
-      class="discourse-tag box"
-    >{{tag}}</a>
-  </div>
-  <div class="card-image">
-    {{#if topic.thumbnails}}
-      <img
-        src={{fallbackSrc}}
-        srcset={{srcset}}
-        width="100%"
-        height="100%"
-        loading="lazy"
-        class="topic-thumbnail"
-      />
-    {{else}}
-      <div width="100%" height="100%" class="topic-thumbnail-placeholder"></div>
-    {{/if}}
-  </div>
+  {{#if (theme-setting "show_tag")}}
+    <div class="discourse-tags">
+      <a
+        href={{tagUrl}}
+        data-tag-name={{tag}}
+        class="discourse-tag box"
+      >{{tag}}</a>
+    </div>
+  {{/if}}
+  {{#if (theme-setting "show_image")}}
+    <div class="card-image">
+      {{#if topic.thumbnails}}
+        <img
+          src={{fallbackSrc}}
+          srcset={{srcset}}
+          width="100%"
+          height="100%"
+          loading="lazy"
+          class="topic-thumbnail"
+        />
+      {{else}}
+        <div
+          width="100%"
+          height="100%"
+          class="topic-thumbnail-placeholder"
+        ></div>
+      {{/if}}
+    </div>
+  {{/if}}
   <div class="card-details">
     {{#if (theme-setting "show_category_link")}}
       <div class="topic-header">

@@ -11,12 +11,24 @@ cards_max_width:
   default: 0.75
   description: "Maximum height/width ratio for Desktop view. Mobile shows full width"
 image_resize:
-  type: string
-  default: "contain"
-  description: "How topic thumbnails should be resized to fit the cards. Can be one of the following: contain, cover, fill, none, scale-down"
+  type: enum
+  default: "cover"
+  choices:
+    - contain
+    - cover
+    - fill
+    - scale-down
+    - none
+  description: "How topic thumbnails should be resized to fit the cards."
 corner_radius:
   type: integer
   default: 4
+show_tag:
+  type: bool
+  default: true
+show_image:
+  type: bool
+  default: true
 show_category_link:
   type: bool
   default: true
