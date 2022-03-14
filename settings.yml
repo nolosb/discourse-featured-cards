@@ -61,6 +61,11 @@ topic_source:
     - top/monthly
     - top/weekly
     - top/daily
+show_component_heading:
+  default: true
+heading_text:
+  default: "Featured Cards"
+display_mobile: true
 show_on:
   default: homepage
   type: enum
@@ -69,8 +74,11 @@ show_on:
     - top_menu
     - all
   description: top_menu refers to the <a href="/admin/site_settings/category/all_results?filter=top_menu">top menu site setting</a>
-display_mobile: true
-show_component_heading:
-  default: true
-heading_text:
-  default: "Featured Cards"
+plugin_outlet:
+  type: enum
+  default: "above-main-container"
+  choices:
+    - "above-main-container"
+    - "below-site-header"
+    - "discovery-list-container-top"
+  description: "Advanced layout setting"
