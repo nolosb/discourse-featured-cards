@@ -1,7 +1,8 @@
-  {{#if shouldDisplay}}
-  <div class="featured-cards-container" id="featured-cards-container" {{on "mousemove" this.mouseMoveHandler}}>
+{{#if shouldDisplay}}
+  {{showHeading}}
+  <div class="featured-cards-container">
     {{#each filteredTopics as |topic|}}
       {{featured-card topic=topic}}
     {{/each}}
   </div>
-  {{/if}}
+{{/if}}

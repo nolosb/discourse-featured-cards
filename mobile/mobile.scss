@@ -1,5 +1,10 @@
 .featured-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
   .featured-card {
-    height: 450px;
+    width: 90vw;
   }
 }

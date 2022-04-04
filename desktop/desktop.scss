@@ -1,0 +1,20 @@
+.featured-cards-container {
+  display: flex;
+  height: #{$cards-height}px;
+  max-height: #{$cards-height}px;
+  justify-content: space-evenly;
+  column-gap: 1.25rem;
+  // show only the first row
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  row-gap: 100px;
+  // shadow hack
+  margin: -2rem;
+  padding: 2rem 2rem 4rem 2rem;
+  .featured-card {
+    height: 100%;
+    max-height: 100%;
+    min-width: calc(#{$cards-height}px * #{$cards-min-width});
+    max-width: calc(#{$cards-height}px * #{$cards-max-width});
+  }
+}

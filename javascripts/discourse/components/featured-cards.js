@@ -3,12 +3,7 @@ import { observes } from "discourse-common/utils/decorators";
 import Component from "@ember/component";
 import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
-import { action } from "@ember/object";
-
-const displayCategories = settings.display_categories
-  .split("|")
-  .map((id) => parseInt(id, 10))
-  .filter((id) => id);
+import { defaultHomepage } from "discourse/lib/utilities";
 
 const featuredTags = settings.featured_tags.replaceAll("|", " ");
 
@@ -40,38 +35,6 @@ export default Component.extend({
     this.container = this.element.querySelector(".featured-cards-container");
   },
 
-  @action
-  mouseMoveHandler(e) {
-    if (!this.listen) return;
-
-    const dx = e.clientX - this.pos.x;
-    const dy = e.clientY - this.pos.y;
-
-    // Scroll the element
-    this.container.scrollTop = this.pos.top - dy;
-    this.container.scrollLeft = this.pos.left - dx;
-  },
-
-  mouseDown(e) {
-    this.pos = {
-      // The current scroll
-      left: this.container.scrollLeft,
-      top: this.container.scrollTop,
-      // Get the current mouse position
-      x: e.clientX,
-      y: e.clientY,
-    };
-
-    this.set("listen", true);
-  },
-
-  mouseUp(e) {
-    this.set("listen", false);
-
-    this.container.style.cursor = "grab";
-    this.container.style.removeProperty("user-select");
-  },
-
   @observes("category")
   categoryChanged() {
     if (settings.scope_to_category) {
@@ -88,9 +51,6 @@ export default Component.extend({
     if (settings.scope_to_category && this.category) {
       loadParams.category = this.category.id;
     }
-
-    console.log(settings.topic_source)
-    console.log(loadParams)
 
     this.store
       .findFiltered("topicList", {
@@ -115,30 +75,36 @@ export default Component.extend({
     return filteredTopics.slice(0, settings.maximum_topic_count);
   },
 
-  @discourseComputed(
-    "site.mobileView",
-    "category.id",
-    "router.currentRouteName"
-  )
-  shouldDisplay(isMobile, viewingCategoryId, currentRouteName) {
-    if (
-      ![
-        "discovery.latest",
-        "discovery.top",
-        "discovery.categories",
-        "discovery.latestCategory",
-      ].includes(currentRouteName)
-    ) {
-      return false;
-    }
-
+  @discourseComputed("site.mobileView", "router.currentRoute", "router.currentRouteName")
+  shouldDisplay(isMobile, currentRoute, currentRouteName) {
     if (isMobile && !settings.display_mobile) return false;
-    if (settings.display_when_unfiltered && !viewingCategoryId) return true;
-
-    if (settings.display_on_categories && viewingCategoryId) {
-      if (displayCategories.length === 0) return true;
-      return displayCategories.includes(viewingCategoryId);
+    if (currentRoute) {
+      if (settings.show_on === "homepage") {
+        return currentRouteName == `discovery.${defaultHomepage()}`;
+      } else if (settings.show_on === "top_menu") {
+        const topMenuRoutes = this.siteSettings.top_menu
+          .split("|")
+          .filter(Boolean);
+        return topMenuRoutes.includes(currentRoute.localName);
+      } else if (settings.show_on === "all") {
+        return (
+          currentRouteName.indexOf("editCategory") &&
+          currentRouteName.indexOf("admin") &&
+          currentRouteName.indexOf("full-page-search")
+        );
+      } else {
+        return false;
+      }
     }
-    return false;
+  },
+
+  @discourseComputed()
+  showHeading() {
+    if (settings.show_component_heading) {
+      const titleElement = document.createElement("h3");
+      titleElement.classList.add("component-heading");
+      titleElement.innerHTML = settings.heading_text;
+      return titleElement;
+    }
   },
 });
