@@ -89,6 +89,9 @@ export default Component.extend({
       loadParams.category = this.category.id;
     }
 
+    console.log(settings.topic_source)
+    console.log(loadParams)
+
     this.store
       .findFiltered("topicList", {
         filter: settings.topic_source,
@@ -103,10 +106,13 @@ export default Component.extend({
   @discourseComputed("list.topics")
   filteredTopics(topics) {
     if (!topics) return;
+    let filteredTopics = topics.filter((topic) => topic.tags && settings.featured_tags.split("|").some(tag=> topic.tags.includes(tag)));
+
     if (settings.randomize_topics) {
-      topics = shuffle(topics);
+      filteredTopics = shuffle(filteredTopics);
     }
-    return topics.slice(0, settings.maximum_topic_count);
+
+    return filteredTopics.slice(0, settings.maximum_topic_count);
   },
 
   @discourseComputed(
