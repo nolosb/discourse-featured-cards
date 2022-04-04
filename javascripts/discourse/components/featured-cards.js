@@ -48,10 +48,6 @@ export default Component.extend({
       loadParams.category = settings.featured_category;
     }
 
-    if (settings.scope_to_category && this.category) {
-      loadParams.category = this.category.id;
-    }
-
     this.store
       .findFiltered("topicList", {
         filter: settings.topic_source,
