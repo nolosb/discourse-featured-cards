@@ -1,10 +1,8 @@
 {{#if shouldDisplay}}
-  <PluginOutlet @name="before-featured-cards" @connectorTagName="div" />
   {{showHeading}}
   <div class="featured-cards-container">
     {{#each filteredTopics as |topic|}}
       {{featured-card topic=topic}}
     {{/each}}
   </div>
-  <PluginOutlet @name="after-featured-cards" @connectorTagName="div" />
 {{/if}}
