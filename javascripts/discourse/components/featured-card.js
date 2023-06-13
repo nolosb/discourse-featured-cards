@@ -4,74 +4,74 @@ import discourseComputed from "discourse-common/utils/decorators";
 export default Component.extend({
   classNames: "featured-card",
   responsiveRatios: [1, 1.5, 2],
-  displayHeight: 200,
-  displayWidth: 200,
+  displayHeight: 500,
+  displayWidth: 500,
 
   @discourseComputed("topic.tags")
   tagUrl(tags) {
-    return `/tag/${this.tag}`;
-  },
+  return `/tag/${this.tag}`;
+},
 
   @discourseComputed("topic.tags")
   tag(tags) {
-    return tags.find((element) =>
-      settings.featured_tags.split("|").includes(element)
-    );
-  },
+  return tags.find((element) =>
+    settings.featured_tags.split("|").includes(element)
+  );
+},
 
   @discourseComputed("topic.thumbnails")
   srcset(thumbnails) {
-    return this.responsiveRatios
-      .map((ratio) => {
-        const target = ratio * this.displayHeight;
-        const match = this.findBest(
-          ratio * this.displayHeight,
-          ratio * this.displayWidth
-        );
-        return `${match.url} ${ratio}x`;
-      })
-      .join(",");
-  },
+  return this.responsiveRatios
+    .map((ratio) => {
+      const target = ratio * this.displayHeight;
+      const match = this.findBest(
+        ratio * this.displayHeight,
+        ratio * this.displayWidth
+      );
+      return `${match.url} ${ratio}x`;
+    })
+    .join(",");
+},
 
   @discourseComputed("topic.thumbnails")
   original(thumbnails) {
-    return thumbnails[0];
-  },
+  return thumbnails[0];
+},
 
   @discourseComputed("original")
   width(original) {
-    return original.width;
-  },
+  return original.width;
+},
 
   @discourseComputed("original")
   height(original) {
-    return original.height;
-  },
+  return original.height;
+},
 
   @discourseComputed("thumbnails")
   fallbackSrc() {
-    return this.findBest(this.displayWidth, this.displayHeight).url;
-  },
+  return this.findBest(this.displayWidth, this.displayHeight).url;
+},
 
   findBest(maxWidth, maxHeight) {
-    if (!this.topic.thumbnails) return;
+  if(!this.topic.thumbnails) return;
 
-    const largeEnough = this.topic.thumbnails.filter((t) => {
-      if (!t.url) return false;
-      return t.max_width >= maxHeight;
-    });
+const largeEnough = this.topic.thumbnails.filter((t) => {
+  if (!t.url) return false;
+  return t.max_width >= maxHeight;
+});
 
-    if (largeEnough.lastObject) {
-      return largeEnough.lastObject;
-    }
+if (largeEnough.lastObject) {
+  return largeEnough.lastObject;
+}
 
-    return this.original;
+return this.original;
   },
 
-  @discourseComputed("topic")
-  url(topic) {
-    return topic.linked_post_number
-      ? topic.urlForPostNumber(topic.linked_post_number)
-      : topic.get("lastUnreadUrl");
-  },
+@discourseComputed("topic")
+url(topic) {
+  return topic.linked_post_number
+    ? topic.urlForPostNumber(topic.linked_post_number)
+    : topic.get("lastUnreadUrl");
+},
 });
